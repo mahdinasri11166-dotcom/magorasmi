@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ماشین حساب</string>
+    <string name="calculator_label">ماشین حساب</string>
+    <string name="secret_app_name">مشکات</string>
+    <string name="app_subtitle">مشکات (Mishkat)</string>
+</resources>

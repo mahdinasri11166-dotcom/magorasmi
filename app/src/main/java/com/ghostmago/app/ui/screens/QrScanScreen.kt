@@ -74,7 +74,6 @@ import com.google.zxing.MultiFormatReader
 import com.google.zxing.PlanarYUVLuminanceSource
 import com.google.zxing.Result
 import com.google.zxing.common.HybridBinarizer
-import com.google.zxing.common.InvertedLuminanceSource
 import java.util.EnumMap
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
@@ -373,14 +372,9 @@ private fun decodeImageProxy(imageProxy: ImageProxy, reader: MultiFormatReader):
         return try {
             reader.decodeWithState(BinaryBitmap(HybridBinarizer(src)))
         } catch (_: Exception) {
-            try {
-                reader.reset()
-                reader.decodeWithState(BinaryBitmap(HybridBinarizer(InvertedLuminanceSource(src))))
-            } catch (_: Exception) {
-                null
-            } finally {
-                reader.reset()
-            }
+            null
+        } finally {
+            reader.reset()
         }
     }
     tryDecode(source)?.text?.let { if (it.isNotBlank()) return it }
